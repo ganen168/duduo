@@ -1,2 +1,62 @@
 # duduo
 用于私密聊天
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>私密聊天</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        #chat-box {
+            height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <div class="bg-white p-8 rounded-lg shadow-md w-96">
+        <h1 class="text-2xl font-bold mb-4">私密聊天</h1>
+        <div id="chat-box" class="border p-4 mb-4 rounded-md bg-gray-50">
+        </div>
+        <div class="flex">
+            <input type="text" id="message-input" class="flex-1 border p-2 rounded-l-md focus:outline-none"
+                placeholder="输入消息">
+            <button id="send-button"
+                class="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 focus:outline-none">
+                <i class="fa-solid fa-paper-plane"></i> 发送
+            </button>
+        </div>
+    </div>
+
+    <script>
+        const chatBox = document.getElementById('chat-box');
+        const messageInput = document.getElementById('message-input');
+        const sendButton = document.getElementById('send-button');
+
+        sendButton.addEventListener('click', () => {
+            const message = messageInput.value;
+            if (message) {
+                const messageElement = document.createElement('p');
+                messageElement.textContent = message;
+                chatBox.appendChild(messageElement);
+                messageInput.value = '';
+            }
+        });
+
+        messageInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                sendButton.click();
+            }
+        });
+    </script>
+</body>
+
+</html>
